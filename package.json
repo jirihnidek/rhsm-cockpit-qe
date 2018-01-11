@@ -1,11 +1,28 @@
 {
-  "name": "rhsm-cockpit-qe",
-  "version": "1.0.0",
-  "description": "Tests for cockpit part of package subscription-manager",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+    "name": "rhsm-cockpit-qe",
+    "version": "1.0.0",
+    "description": "a try to write first tests for subscription-manager-cockpit",
+    "main": "index.js",
+    "scripts": {
+        "test": "./node_modules/nightwatch/bin/nightwatch",
+        "e2e-setup": "selenium-standalone install",
+        "watch": "npm-watch"
+    },
+    "watch": {
+        "test": "{src,commands,tests,page_objects}/*.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-plugin-add-module-exports": "^0.2.1",
+        "babel-preset-es2015": "^6.24.1",
+        "nightwatch": "^0.9.19",
+        "npm-watch": "^0.3.0"
+    },
+    "devDependencies": {
+        "env2": "^2.2.0",
+        "highland": "^2.1.11",
+        "selenium-standalone": "^6.12.0"
+    }
 }
