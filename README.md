@@ -6,7 +6,12 @@
 npm install
 
 ```
-### 3. Configuration
+### 3. Install selenium server
+```sh
+npm install selenium-sever --save-dev
+```
+
+### 4. Configuration
 ```sh
 cp env-example .env
 vim .env
@@ -22,6 +27,8 @@ npm test
 ```sh
 npm run watch
 ```
+
+> Note: There is a detailed beginners tutorial at https://github.com/dwyl/learn-nightwatch
 
 ## Development Guide
 
