@@ -9,7 +9,7 @@
         "watch": "npm-watch"
     },
     "watch": {
-        "test": "{src,commands,tests,page_objects}/*.js"
+        "test": "{src,tests,page_objects}/*.js"
     },
     "author": "",
     "license": "ISC",

@@ -6,5 +6,12 @@ module.exports = {
             .navigate()
             .wait()
             .login();
+        //browser.pause();
+        browser.page.mainPage()
+            .wait()
+            .subscriptions();
+        browser.page.subscriptionsPage()
+            .wait()
+            .register();
     }
 }
