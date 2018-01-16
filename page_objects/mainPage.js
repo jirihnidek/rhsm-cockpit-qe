@@ -18,11 +18,12 @@ module.exports = {
     },
     commands: [{
         wait: function(){
-            this.section.sidebar.waitForElementVisible('@subscriptions',5000);
+            this.section.sidebar.waitForElementVisible('@subscriptions',15000);
             return this;
         },
         subscriptions: function(){
-            this.section.sidebar.click('@subscriptions');
+            this.api.execute('document.querySelector("a[href=\'/subscriptions\']").click()');
+            //this.section.sidebar.click('@subscriptions');
             return this;
         }
     }]
