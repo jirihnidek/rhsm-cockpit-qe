@@ -2,6 +2,8 @@ var conf = require("../nightwatch.conf.js");
 const env = require("env2")(".env");
 const url = require("url");
 const mainPage = require("./mainPage.js");
+const Rx = require("rxjs/Rx");
+const beautify = require('js-beautify').html;
 
 module.exports = {
     url: function() {
@@ -10,28 +12,32 @@ module.exports = {
     sections: {
         sidebar: mainPage['sections']['sidebar'],
         main: {
-            selector: "//iframe[@name='cockpit1:localhost/subscriptions']",
+            selector: "#app",
             elements: {
                 registerButton: {
                     selector: "div.subscription-status-ct button",
-                    locateStrategy: "css"
+                    locateStrategy: "css selector"
                 }
             }
         }
     },
     commands: [{
         wait: function(){
-            this.api
-                .useXpath()
-                .waitForElementVisible("//iframe[@name='cockpit1:localhost/subscriptions' and @data-loaded=1]",15000);
-                // .element("xpath", "//iframe[@name='cockpit1:localhost/subscriptions']",
-                //          function(el){console.log(el)});
+            var element = Rx.Observable.bindCallback(this.api.element);
+            var frame = Rx.Observable.bindCallback(this.api.frame);
+            var waitFor = Rx.Observable.bindCallback(this.section.main.waitForElementVisible);
+            var source = Rx.Observable.bindCallback(this.api.source);
+
+            waitFor("iframe[name='cockpit1:localhost/subscriptions'][data-loaded='1']",15000)
+                .flatMap(() => element("xpath", "//iframe[@name='cockpit1:localhost/subscriptions']"))
+                .map((result) => result.value)
+                .flatMap(frameid => frame(frameid))
+                .flatMap((result) => waitFor('@registerButton',10000))
+                .subscribe(() => {return "waiting is finished";});
             return this;
         },
         register: function(){
-            var frame = this.api.element("xpath", "//iframe[@name='cockpit1:localhost/subscriptions']");
-            console.log(frame);
-            this.api.frame(frame);
+            this.section.main.click('@registerButton');
             return this;
         }
     }]
