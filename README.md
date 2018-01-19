@@ -8,7 +8,7 @@ npm install
 ```
 ### 3. Install selenium server
 ```sh
-npm install selenium-sever --save-dev
+npm install selenium-server --save-dev
 ```
 
 ### 4. Configuration
