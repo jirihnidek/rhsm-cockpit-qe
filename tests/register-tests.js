@@ -12,6 +12,6 @@ module.exports = {
         browser.page.subscriptionsPage()
             .wait()
             .register();
-        //browser.end();
+        browser.end();
     }
 }

@@ -32,7 +32,7 @@ module.exports = {
                 .flatMap(() => element("xpath", "//iframe[@name='cockpit1:localhost/subscriptions']"))
                 .map((result) => result.value)
                 .flatMap(frameid => frame(frameid))
-                .flatMap((result) => waitFor('@registerButton',10000))
+                .flatMap((result) => waitFor('@registerButton', 10000))
                 .subscribe(() => {return "waiting is finished";});
             return this;
         },

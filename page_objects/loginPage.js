@@ -23,15 +23,15 @@ module.exports = {
     },
     commands: [{
         wait: function(){
-            this.section.loginForm.waitForElementVisible('@userNameInput',5000);
-            this.section.loginForm.waitForElementVisible('@passwordInput',5000);
-            this.section.loginForm.waitForElementVisible('@submitButton',5000);
+            this.section.loginForm.waitForElementVisible('@userNameInput', 5000);
+            this.section.loginForm.waitForElementVisible('@passwordInput', 5000);
+            this.section.loginForm.waitForElementVisible('@submitButton', 5000);
             return this;
         },
         login: function(){
             this.section.loginForm
-                .setValue('@userNameInput',process.env.COCKPIT_USER_NAME)
-                .setValue('@passwordInput',process.env.COCKPIT_USER_PASSWORD)
+                .setValue('@userNameInput', process.env.COCKPIT_USER_NAME)
+                .setValue('@passwordInput', process.env.COCKPIT_USER_PASSWORD)
                 .click('@submitButton');
             return this;
         }

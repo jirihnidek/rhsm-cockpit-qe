@@ -4,7 +4,7 @@ const url = require("url");
 
 module.exports = {
     url: function() {
-        return url.resolve(process.env.COCKPIT_URL,"/system");
+        return url.resolve(process.env.COCKPIT_URL, "/system");
     },
     sections: {
         sidebar: {
@@ -18,7 +18,7 @@ module.exports = {
     },
     commands: [{
         wait: function(){
-            this.section.sidebar.waitForElementVisible('@subscriptions',15000);
+            this.section.sidebar.waitForElementVisible('@subscriptions', 15000);
             return this;
         },
         subscriptions: function(){
